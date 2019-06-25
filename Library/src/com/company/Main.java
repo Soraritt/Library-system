@@ -7,6 +7,7 @@ import java.util.*;
 
 public class Main {
     private static LibrarianDB Ldb =  new LibrarianDB();
+    private static UserDB userdb =  new UserDB();
     private static BookDB Bdb = new BookDB();
     private static BookLoan bookln =  new BookLoan();
     private static Scanner input = new Scanner(System.in);
@@ -71,7 +72,7 @@ public class Main {
 
         System.out.println("Plz enter Menu : ");
         String index = input.nextLine();
-        String bookid,scheckperiod ;
+        String bookid,scheckperiod,userid ;
         int periodday;
         boolean bcheck = false;
         if (key.equals("staff")) {
@@ -86,15 +87,27 @@ public class Main {
                     Choose_menu(menu_key);
                     break;
                 case "2":
-                    System.out.println("2.List Staff====================");
+                    System.out.println("2.List Staffs====================");
                     Ldb.liststaff();
                     System.out.println("================================");
                     Choose_menu(menu_key);
                     break;
                 case "3":
+                    System.out.println("1. Adding User==============");
+                    System.out.println("Plz enter User ID : ");
+                    String user_id = input.nextLine();
+                    System.out.println("Plz enter User First Name: ");
+                    String user_fname = input.nextLine();
+                    System.out.println("Plz enter User Last Name: ");
+                    String user_lname = input.nextLine();
+                    userdb.adduser(user_id,user_fname,user_lname);
                     Choose_menu(menu_key);
+
                     break;
                 case "4":
+                    System.out.println("2.List Users====================");
+                    userdb.listuser();
+                    System.out.println("================================");
                     Choose_menu(menu_key);
                     break;
                 case "5":
@@ -146,6 +159,8 @@ public class Main {
                     System.out.println("============================");
                     System.out.println("enter C : Confirms ,S : Show listbook ,E Exit  ");
                     System.out.println("============================");
+                    System.out.println("Plz enter user ID : ");
+                    userid = input.nextLine();
 
                     ArrayList<Book> listborrow  = new ArrayList<Book>();
                     while(bcheck == false) {
@@ -153,7 +168,7 @@ public class Main {
                         bookid = input.nextLine();
                         if(bookid.equals("C")){
 
-                            bookln.confirm_Bookborrow(Bdb,listborrow,librarianStaff,"xxxx","",periodday);
+                            bookln.confirm_Bookborrow(Bdb,listborrow,librarianStaff,"xxxx",userid,periodday);
                             System.out.println("Borrow Book is Success");
                             bcheck = true;
                         }
@@ -343,17 +358,5 @@ public class Main {
                 System.exit(0);
         }
 */
-
- /*
-        Scanner input = new Scanner(System.in);
-        System.out.println("Plz enter ID : ");
-        String id_input = input.nextLine();
-        System.out.println("Plz enter Name : ");
-        String name_input = input.nextLine();
-
-
-
-*/
-
     }
 }

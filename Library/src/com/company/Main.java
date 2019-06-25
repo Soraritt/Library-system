@@ -1,7 +1,5 @@
 
 package com.company;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 
@@ -64,9 +62,8 @@ public class Main {
          }
          else if (key.equals("emp")){
              System.out.println("Menu Employee =============");
-             System.out.println("1. Employee");
-             System.out.println("2. Return Menu");
-             System.out.println("3. Exit Program");
+             System.out.println("1.List Books    2.Search Books     3.Detail Books");
+             System.out.println("4.Return Menu   5.Exit Program");
              System.out.println("===========================");
          }
 
@@ -255,6 +252,34 @@ public class Main {
                     break;
             }
         }
+        else if(key.equals("emp")) {
+            switch (index) {
+                case "1":
+                    System.out.println("6. List Books==============");
+                    Bdb.listbook();
+                    System.out.println("===========================");
+                    Choose_menu(menu_key);
+                    break;
+                case "2":
+                    System.out.println("7.Search Books============");
+                    Choose_Search(menu_key);
+                    break;
+                case "3":
+                    System.out.println("3. Book Detail===================");
+                    System.out.println("Plz enter Book ID: ");
+                    bookid = input.nextLine();
+                    Bdb.detailbook(bookid);
+                    System.out.println("================================");
+                    Choose_menu(menu_key);
+                    break;
+                case "4":
+                    Choose_Mainmenu();
+                    break;
+                case "5":
+                    System.exit(0);
+                    break;
+            }
+        }
     }
 
     static void Choose_Search(String key) {
@@ -268,7 +293,7 @@ public class Main {
         System.out.println("Plz enter Key Search Field : ");
         String index = input.nextLine();
         String value= "" ;
-        if (key.equals("staff")) {
+
             switch (index) {
                 case "1":
                     System.out.println("Search Field Book id============");
@@ -320,23 +345,24 @@ public class Main {
                     Choose_Search(menu_key);
                     break;
                 case "8":
-                    menu_key ="staff";
                     Choose_menu(menu_key);
                     break;
                 case "9":
                     System.exit(0);
                     break;
             }
-        }
+
 
     }
     public static void main(String[] args) {
 	// write your code here
        Choose_Mainmenu();
-       // DateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss", Locale.ENGLISH);
-      //  Date date = new Date();
-      //  System.out.println(sdf.format(date));
 
+       /*
+          DateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss", Locale.ENGLISH);
+          Date date = new Date();
+          System.out.println(sdf.format(date));
+       */
 
       /*  switch(menu_number) {
             case "1":
